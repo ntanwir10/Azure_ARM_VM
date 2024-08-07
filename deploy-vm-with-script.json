@@ -2,19 +2,19 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "adminusername": {
+    "adminUsername": {
       "type": "string",
       "metadata": {
         "description": "Admin Username"
       }
     },
-    "adminpassword": {
+    "adminPassword": {
       "type": "securestring",
       "metadata": {
         "description": "Admin Password"
       }
     },
-    "vmsize": {
+    "vmSize": {
       "type": "string",
       "metadata": {
         "description": "Size of the VM"

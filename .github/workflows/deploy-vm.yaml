@@ -1,0 +1,37 @@
+name: Deploy Azure VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy ARM Template
+      uses: azure/arm-deploy@v1
+      with:
+        scope: resourceGroup
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        resourceGroupName: ${{ secrets.RESOURCE_GROUP }}
+        template: ./deploy-vm-with-script.json
+        parameters: adminUsername=${{ secrets.ADMIN_USERNAME }} adminPassword=${{ secrets.ADMIN_PASSWORD }}
+        deploymentMode: Incremental
+
+    - name: Push changes to GitHub
+      run: |
+        git config --global user.name "your-username"
+        git config --global user.email "your-email"
+        git add .
+        git commit -m "Automated deployment and code update"
+        git push origin main
