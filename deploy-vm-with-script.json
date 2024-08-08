@@ -14,12 +14,6 @@
         "description": "Admin Password"
       }
     },
-    "vmSize": {
-      "type": "string",
-      "metadata": {
-        "description": "Size of the VM"
-      }
-    },
     "location": {
       "type": "string",
       "defaultValue": "[resourceGroup().location]",
