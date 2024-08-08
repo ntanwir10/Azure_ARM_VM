@@ -85,7 +85,7 @@
         "hardwareProfile": {
           "vmSize": "Standard_DS1_v2"
         },
-        "storageProfiles": {
+        "storageProfile": {
           "osDisk": {
             "createOption": "FromImage"
           },
