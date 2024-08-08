@@ -36,8 +36,8 @@
   },
   "resources": [
     {
-      "name": "variables('vnetName')",
       "type": "Microsoft.Network/virtualNetworks",
+      "name": "[variables('vnetName')]",
       "apiVersion": "2018-08-01",
       "location": "[parameters('location')]",
       "properties": {
@@ -46,7 +46,7 @@
         },
         "subnets": [
           {
-            "name": "variables('subnetName')",
+            "name": "[variables('subnetName')]",
             "properties": {
               "addressPrefix": "10.0.0.0/24"
             }
@@ -55,8 +55,8 @@
       }
     },
     {
-      "name": "variables('nicName')",
       "type": "Microsoft.Network/networkInterfaces",
+      "name": "[variables('nicName')]",
       "apiVersion": "2018-08-01",
       "location": "[parameters('location')]",
       "dependsOn": [
@@ -78,16 +78,16 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "variables('vmName')",
+      "name": "[variables('vmName')]",
       "apiVersion": "2018-06-01",
       "location": "[parameters('location')]",
       "properties": {
         "hardwareProfile": {
-          "vmSize": "[parameters('vmSize')]"
+          "vmSize": "Standard_DS1_v2"
         },
         "storageProfiles": {
           "osDisk": {
-            "createOption": "fromImage"
+            "createOption": "FromImage"
           },
           "imageReference": {
             "publisher": "MicrosoftWindowsServer",
@@ -97,9 +97,9 @@
           }
         },
         "osProfile": {
-          "computerName": "variables('vmName')",
-          "adminUsername": "[parameters('adminusername')]",
-          "adminPassword": "[parameters('adminpassword')]"
+          "computerName": "[variables('vmName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]"
         },
         "networkProfile": {
           "networkInterfaces": [
