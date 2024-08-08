@@ -128,7 +128,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            "[concat('artifactsLocation', '/scripts/createVMs.ps1', 'artifactsLocationSasToken')]"
+            "https://armshellvmstrge.blob.core.windows.net/vmshellscriptdata/createVMs.ps1"
           ],
           "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File createVms.ps1 -resourceGroupName [resourceGroup().name] -location [parameters('location')] -adminUsername [parameters('adminUsername')] -adminPassword [parameters('adminPassword')]"
         }
